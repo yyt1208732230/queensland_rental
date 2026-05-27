@@ -1,0 +1,768 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tenant Resume - Yueteng Yu, Zhengtao Ma and Guoliang Yang</title>
+  <style>
+    :root {
+      --primary: #1f3a5f;
+      --secondary: #4f6f91;
+      --accent: #dbeafe;
+      --soft: #f6f8fb;
+      --text: #1f2933;
+      --muted: #64748b;
+      --border: #d8e0ea;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #eef2f7;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(31, 58, 95, 0.14);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      padding: 42px;
+      background: linear-gradient(135deg, #1f3a5f 0%, #305f8f 58%, #6f91b4 100%);
+      color: white;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 38px;
+      letter-spacing: 0;
+      line-height: 1.12;
+    }
+
+    .hero .subtitle {
+      font-size: 17px;
+      opacity: 0.92;
+      margin-bottom: 22px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .hero-card p {
+      margin: 8px 0;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .content {
+      padding: 34px 42px 42px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 9px;
+      height: 24px;
+      background: var(--secondary);
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .intro-box {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 24px;
+      font-size: 15.5px;
+    }
+
+    .profiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .profile-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(31,58,95,0.06);
+    }
+
+    .photo-placeholder {
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #edf3fb, #dbeafe);
+      border: 1.5px dashed #9db3cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #58708f;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .profile-photo {
+      aspect-ratio: 4 / 5;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: #edf3fb;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .photo-yueteng img {
+      object-position: 78% 45%;
+    }
+
+    .photo-toto img {
+      object-position: 40% 50%;
+    }
+
+    .photo-guoliang img {
+      object-position: 45% 35%;
+    }
+
+    .profile-card h3 {
+      margin: 0 0 5px;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .role {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .info-list li {
+      padding: 7px 0;
+      border-top: 1px solid #eef2f7;
+    }
+
+    .info-list strong {
+      color: var(--primary);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .group-photo-card {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .group-photo-placeholder {
+      aspect-ratio: 16 / 7;
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, rgba(31, 58, 95, 0.06), rgba(79, 111, 145, 0.12)),
+        #ffffff;
+      border: 1.5px dashed #9db3cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #58708f;
+      font-weight: 800;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .group-photo-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 14.5px;
+    }
+
+    .group-photo-text h3 {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .group-photo-text p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .panel {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .check-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 26px;
+      margin: 9px 0;
+      font-size: 14.5px;
+    }
+
+    .check-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .documents {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .doc-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .contact strong {
+      color: var(--primary);
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 7mm;
+      }
+
+      * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      body {
+        background: white;
+        padding: 0;
+        font-size: 8.5px;
+        line-height: 1.22;
+      }
+
+      .page {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .hero {
+        grid-template-columns: 1.35fr 0.9fr;
+        gap: 7mm;
+        padding: 5mm 8mm;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+
+      .hero .subtitle {
+        font-size: 10px;
+        margin-bottom: 7px;
+      }
+
+      .hero p {
+        margin: 0;
+      }
+
+      .badges {
+        gap: 4px;
+        margin-top: 7px;
+      }
+
+      .badge {
+        padding: 3px 6px;
+        font-size: 8.2px;
+      }
+
+      .hero-card {
+        border-radius: 10px;
+        padding: 8px 10px;
+      }
+
+      .hero-card h2 {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+
+      .hero-card p {
+        font-size: 8.4px;
+        margin: 3px 0;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1.12fr;
+        gap: 2.6mm 5mm;
+        padding: 4mm 8mm 4mm;
+      }
+
+      .section {
+        margin-bottom: 0;
+        break-inside: avoid;
+      }
+
+      .content > .section:nth-of-type(1) {
+        grid-column: 1;
+      }
+
+      .content > .section:nth-of-type(2) {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+      }
+
+      .content > .section:nth-of-type(3) {
+        grid-column: 1;
+      }
+
+      .content > .section:nth-of-type(4) {
+        grid-column: 1;
+      }
+
+      .content > .section:nth-of-type(5) {
+        grid-column: 2;
+      }
+
+      .content > .section:nth-of-type(6) {
+        grid-column: 2;
+      }
+
+      .section-title {
+        gap: 5px;
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .section-title::before {
+        width: 4px;
+        height: 14px;
+      }
+
+      .intro-box {
+        border-radius: 8px;
+        padding: 7px 9px;
+        font-size: 8.4px;
+      }
+
+      .profile-card,
+      .panel,
+      .intro-box,
+      .group-photo-card,
+      .doc-item {
+        break-inside: avoid;
+      }
+
+      .profiles {
+        gap: 5mm;
+      }
+
+      .profile-card {
+        border-radius: 8px;
+        padding: 7px;
+        box-shadow: none;
+      }
+
+      .photo-placeholder,
+      .profile-photo {
+        border-radius: 6px;
+        margin-bottom: 5px;
+      }
+
+      .profile-card h3 {
+        font-size: 11px;
+        margin-bottom: 3px;
+      }
+
+      .role {
+        font-size: 8px;
+        margin-bottom: 5px;
+      }
+
+      .info-list {
+        font-size: 7.6px;
+        overflow-wrap: anywhere;
+      }
+
+      .info-list li {
+        padding: 2px 0;
+      }
+
+      .group-photo-card {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 6px;
+        border-radius: 8px;
+        padding: 7px;
+      }
+
+      .group-photo-placeholder {
+        border-radius: 6px;
+        padding: 7px;
+        font-size: 7.5px;
+      }
+
+      .group-photo-text {
+        font-size: 8.2px;
+      }
+
+      .group-photo-text h3 {
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 2mm;
+      }
+
+      .panel {
+        border-radius: 8px;
+        padding: 7px 9px;
+      }
+
+      .panel h3 {
+        font-size: 10.5px;
+        margin-bottom: 5px;
+      }
+
+      .check-list li {
+        padding-left: 13px;
+        margin: 2.4px 0;
+        font-size: 8.2px;
+      }
+
+      .check-list li::before {
+        width: 9px;
+        height: 9px;
+        font-size: 6px;
+      }
+
+      .documents {
+        gap: 3px;
+      }
+
+      .doc-item {
+        border-radius: 6px;
+        padding: 5px;
+        font-size: 7.8px;
+      }
+
+      .footer {
+        grid-column: 1 / -1;
+        margin-top: 0;
+        padding-top: 5px;
+        font-size: 8px;
+      }
+    }
+
+    @media screen and (max-width: 820px) {
+      body {
+        padding: 16px;
+      }
+
+      .hero, .grid-2, .profiles, .documents, .group-photo-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero, .content {
+        padding: 28px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Tenant Resume</h1>
+        <div class="subtitle">Yueteng Yu, Zhengtao Ma and Guoliang Yang | PhD Researchers</div>
+        <p>
+          We are three quiet, respectful, and academically focused PhD researchers seeking a stable long-term rental home in Brisbane.
+        </p>
+        <div class="badges">
+          <span class="badge">No Smoking</span>
+          <span class="badge">No Pets</span>
+          <span class="badge">No Parties</span>
+          <span class="badge">Long-Term Home Preferred</span>
+          <span class="badge">Stable Fully Funded Scholarship Income</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Application Snapshot</h2>
+        <p><strong>Preferred move-in:</strong> June / July, 2026</p>
+        <p><strong>Lease preference:</strong> 12+ months</p>
+        <p><strong>Current situation:</strong> Current landlord is preparing to sell the property</p>
+        <p><strong>Current areas:</strong> Annerley, Brisbane</p>
+        <p><strong>Looking for:</strong> 3-bedroom home close to public transport</p>
+      </aside>
+    </section>
+
+    <section class="content">
+      <div class="section">
+        <div class="section-title">About Us</div>
+        <div class="intro-box">
+          My name is <strong>Yueteng Yu (Laurence)</strong>, and I am a PhD researcher at the <strong>Queensland University of Technology (QUT)</strong>, based at the <strong>Centre for Future Mobility</strong>. I am applying together with <strong>Zhengtao Ma (Toto)</strong>, a full-time QUT PhD researcher, and <strong>Guoliang Yang</strong>, a PhD student at the <strong>University of Queensland (UQ)</strong>.
+          <br /><br />
+          We have been living together in Brisbane and are now seeking a new long-term home because our current landlord is preparing to sell the property. We maintain a quiet, clean, and respectful lifestyle. None of us smoke, own pets, or host parties, and we value paying rent on time, caring for the property, and communicating well.
+          <br /><br />
+          Outside research, we enjoy cooking, outdoor exercise, cycling, photography, marathon running, local farmers' markets, and quiet board games.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Applicant Profiles</div>
+        <div class="profiles">
+          <article class="profile-card">
+            <div class="profile-photo photo-yueteng">
+              <img src="yueteng.jpg" alt="Yueteng Yu" />
+            </div>
+            <h3>Yueteng Yu (Laurence)</h3>
+            <p class="role">PhD Researcher | QUT Centre for Future Mobility</p>
+            <ul class="info-list">
+              <li><strong>Age:</strong> 28</li>
+              <li><strong>Occupation:</strong> PhD researcher</li>
+              <li><strong>Institution:</strong> QUT</li>
+              <li><strong>Income:</strong> Fully funded PhD scholarship + Australian national stipend</li>
+              <li><strong>Lifestyle:</strong> Quiet, clean, cooking, exercise and board games</li>
+              <li><strong>Contact:</strong> laurenceyu222@gmail.com | 0434 471 552</li>
+            </ul>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-photo photo-toto">
+              <img src="toto.jpg" alt="Zhengtao Ma" />
+            </div>
+            <h3>Zhengtao Ma (Toto)</h3>
+            <p class="role">PhD Researcher | Queensland University of Technology</p>
+            <ul class="info-list">
+              <li><strong>Age:</strong> 28</li>
+              <li><strong>Occupation:</strong> Full-time PhD researcher</li>
+              <li><strong>Institution:</strong> QUT</li>
+              <li><strong>Income:</strong> Top-tier university scholarship</li>
+              <li><strong>Lifestyle:</strong> Non-smoker, no pets, photography, cycling, marathon running</li>
+              <li><strong>Contact:</strong> zhengtaoto@gmail.com | 0430 637 928</li>
+            </ul>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-photo photo-guoliang">
+              <img src="guoliang.jpg" alt="Guoliang Yang" />
+            </div>
+            <h3>Guoliang Yang</h3>
+            <p class="role">PhD researcher | University of Queensland</p>
+            <ul class="info-list">
+              <li><strong>Age:</strong> 28</li>
+              <li><strong>Occupation:</strong> PhD researcher</li>
+              <li><strong>Institution:</strong> UQ</li>
+              <li><strong>Income:</strong> Stable scholarship</li>
+              <li><strong>Lifestyle:</strong> Non-smoker, pet-free, quiet, clean and respectful</li>
+              <li><strong>Contact:</strong> guoliang.yang@uq.edu.au | 0415 656 649</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <!-- <div class="section">
+        <div class="section-title">Group Photo</div>
+        <div class="group-photo-card">
+          <div class="group-photo-placeholder">Group Photo Placeholder<br />Yueteng Yu and Co-Applicants</div>
+          <div class="group-photo-text">
+            <h3>Shared Living Group</h3>
+            <p>
+              A group photo can be added here to give the application a more personal and approachable feel while keeping the layout balanced for A4 printing.
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="section grid-2">
+        <div class="panel">
+          <h3>Why We Would Be Good Tenants</h3>
+          <ul class="check-list">
+            <li>We already live together and have a stable, respectful shared-living arrangement.</li>
+            <li>We prefer a peaceful and well-maintained home environment.</li>
+            <li>We do not smoke, own pets, host parties, or disturb neighbours.</li>
+            <li>We are responsible with rent, cleaning, communication, and property care.</li>
+            <li>We are seeking a long-term home rather than short-term accommodation.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Financial Reliability</h3>
+          <ul class="check-list">
+            <li>Stable support through PhD scholarships and university research work.</li>
+            <li>Top-tier fully-funded scholarship support and proof available.</li>
+            <li>Family support available if required.</li>
+            <li>Proof of income, enrolment, identification, references, and rental history can be provided.</li>
+            <li>We understand the importance of paying rent and bills on time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Supporting Documents Available</div>
+        <div class="documents">
+          <div class="doc-item">Photo ID</div>
+          <div class="doc-item">Proof of Income</div>
+          <div class="doc-item">Scholarship / Income</div>
+          <div class="doc-item">Rental History</div>
+          <div class="doc-item">References</div>
+          <div class="doc-item">QUT / UQ Enrolment</div>
+          <div class="doc-item">Bank Statement</div>
+          <div class="doc-item">Cover Letter</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Rental Intention</div>
+        <div class="intro-box">
+          We are genuinely looking for a comfortable, stable, and well-kept 3-bedroom home in a safe and quiet street, ideally close to public transport. We would appreciate the opportunity to rent this property and would treat it with care and respect throughout the tenancy.
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="contact">
+          <strong>Primary Contact:</strong> Yueteng Yu<br />
+          <strong>Email:</strong> laurenceyu222@gmail.com<br />
+          <strong>Phone:</strong> (0)434471552
+        </div>
+        <div>
+          <strong>Prepared for:</strong> Rental Application<br />
+          <strong>Location:</strong> Brisbane, Queensland<br />
+          <strong>Date:</strong> 15/05/2026
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
+
